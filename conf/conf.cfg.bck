@@ -1,0 +1,77 @@
+[Logs]
+dicomExtractor=STDOUT
+DBWriter=STDOUT
+
+[General]
+# INFO
+minLogLevelIndex = 1
+logFile=STDOUT
+outputDirPath=/Users/talbarda/Dev/experiment/unitTesting/data/output
+FieldStudyOutputPath=ZebraStudyOutputPath
+blackDICOMPath=d:/black_dicom.dcm
+
+[DB]
+#connectionURL=http://localhost:8983/solr/dicoms
+connectionURL=/Users/talbarda/Dev/experiment/allDocs.txt
+bulkSize=-1
+
+[DB_ODBC]
+cursorOpenedSeconds=3600
+dsn = mssql
+driver =
+user = sa
+password = zebramed
+host = zebra-win7x64
+dbName = Rentgen_PTNT155
+
+[DB_ORACLE]
+user = midstore
+password = midstore
+server = ZEBRA-WIN7-01\\ZEBRA_MSSQL
+database = Rentgen_PTNT155
+
+[RIS_QUERIES]
+imgProcByAccessionNo=SELECT ProcedureNo as AccessionNumber,
+                     	   prc.ProcedureId, DataSourceID, PatientID,
+                     	   case GenderID when 1 then 'M' when 2 then 'F' else 'UNKNOWN' end as Gender,
+                     	   BirthDate,cast(RTRIM(LTRIM(GivenName)) as NVARCHAR) GivenName,
+                     	   cast(RTRIM(LTRIM(FamilyName)) as NVARCHAR) FamilyName,
+                     	   ProcedureDate,InstituteID,EncounterID as VisitId,EncounterNo as ATDVisitNo,
+                     	   IsRoadAccident, RoadAccidentDate,ReliabilityTypeID,
+                     	   StatusCode, IsReportToAtd, ProcedureTime,PrevProcedureDate,
+                     	   PatientIndicatorCode, cast(RTRIM(LTRIM(PatientIndicatorDesc)) as NVARCHAR) as PatientIndicatorDesc,
+                     	   cast(RTRIM(LTRIM(PatientClass)) as NVARCHAR) as PatientClass
+                     FROM dbo.ImgProcedures prc
+                     LEFT JOIN dbo.ImgProcedures01 prc01
+                     ON (prc.ProcedureId = prc01.ProcedureId)
+                     WHERE ProcedureNo = ?
+
+[DB_REDIS]
+host = localhost
+port = 6379
+
+[Experiment]
+#dicomsPath=/Users/talbarda/Desktop/zebra/DataSamples/98890234_20030505_MR/98890234/20030505/MR/eyalto
+dicomsPath=D:/hrpacs/
+[QueuesURLS]
+ris=tcp://127.0.0.1:5560
+pacs=tcp://127.0.0.1:5557
+manager=tcp://127.0.0.1:5559
+
+[PACS]
+imageSuffix=.img
+dicomSuffix=.dcm
+fieldImagesPath=imagesLocations
+copyParallelismPerConsumer=4
+convertToDiCOMParallelismPerConsumer=2
+
+[manager]
+areDictionariesPersistent=False
+currentStudiesStatesDict=/Users/talbarda/Dev/experiment/AnonymizationExperiment/persistentDictionaries/current
+processedStudiesStatesDict=/Users/talbarda/Dev/experiment/AnonymizationExperiment/persistentDictionaries/successful
+failedStudiesStatesDict=/Users/talbarda/Dev/experiment/AnonymizationExperiment/persistentDictionaries/failed
+
+[shelveDictionaries]
+dirPath=D:/dev/experiment/AnonymizationExperiment/persistentDictionaries
+saltsDict=salts
+extractorFilesStates=extractorFilesStates

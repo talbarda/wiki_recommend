@@ -1,0 +1,78 @@
+import re
+
+NAMESPACES_DICT = {
+    -2: "Media:",
+    -1: "Special:",
+    0: "",
+    1: "Talk:",
+    2: "User:",
+    3: "User talk:",
+    4: "Wikipedia:",
+    5: "Wikipedia talk:",
+    6: "File:",
+    7: "File talk:",
+    8: "MediaWiki:",
+    9: "MediaWiki talk:",
+    10: "Template:",
+    11: "Template talk:",
+    12: "Help:",
+    13: "Help talk:",
+    14: "Category:",
+    15: "Category talk:",
+    100: "Portal:",
+    101: "Portal talk:",
+    108: "Book:",
+    109: "Book talk:",
+    118: "Draft:",
+    119: "Draft talk:",
+    446: "Education Program:",
+    447: "Education Program talk:",
+    710: "TimedText:",
+    711: "TimedText talk:",
+    828: "Module:",
+    829: "Module talk"}
+
+STRING_IS_NUMBER_REGEX = re.compile("^[0-9]+$")
+DEF_MIN_LOG_LEVEL = 0
+ORACLE_DEF_PORT = 1521
+REDIS_DEF_PORT = 6379
+CONF_CATEG_PARAM_NAME_DELIM = u'.'
+UNLIMITED_DOCS_AMOUNT = -1
+
+LOGS_CONF_SECTION_NAME = u'Logs'
+GENERAL_CONF_SECTION_NAME = u'General'
+# Constants for parameters in conf file
+OUTPUT_DIRECTORY_CONF_PARAM_NAME = u'outputDirPath'
+FIELD_STUDY_OUTPUT_PATH_CONF_PARAM_NAME = u'FieldStudyOutputPath'
+BLACK_DICOM_PATH_CONF_PARAM_NAME = u'blackDICOMPath'
+MIN_LOG_LEVEL_INDEX_CONF_PARAM_NAME = u'minLogLevelIndex'
+
+DB_CONF_SECTION_NAME = u'DB'
+DB_CONNECTION_URL_CONF_PARAM_NAME = u'%s.connectionURL' % DB_CONF_SECTION_NAME
+DB_BULK_SIZE_CONF_PARAM_NAME = u'%s.bulkSize' % DB_CONF_SECTION_NAME
+
+DB_ODBC_SECTION_NAME = u'%s_ODBC' % DB_CONF_SECTION_NAME
+DB_ODBC_MAX_SECONDS_FOR_CURSOR_OBSOLESCENCE_CONF_PARAM_NAME = u'%s.cursorOpenedSeconds' % DB_ODBC_SECTION_NAME
+DB_ODBC_DSN_CONF_PARAM_NAME = u'%s.dsn' % DB_ODBC_SECTION_NAME
+DB_ODBC_DRIVER_CONF_PARAM_NAME = u'%s.driver' % DB_ODBC_SECTION_NAME
+DB_ODBC_USER_CONF_PARAM_NAME = u'%s.user' % DB_ODBC_SECTION_NAME
+DB_ODBC_PASS_CONF_PARAM_NAME = u'%s.password' % DB_ODBC_SECTION_NAME
+DB_ODBC_SERVER_CONF_PARAM_NAME = u'%s.server' % DB_ODBC_SECTION_NAME
+DB_ODBC_PORT_CONF_PARAM_NAME = u'%s.port' % DB_ODBC_SECTION_NAME
+DB_ODBC_DB_NAME_CONF_PARAM_NAME = u'%s.database' % DB_ODBC_SECTION_NAME
+
+DB_ORACLE_SECTION_NAME = u'%s_ORACLE' % DB_CONF_SECTION_NAME
+DB_ORACLE_USER_CONF_PARAM_NAME = u'%s.user' % DB_ORACLE_SECTION_NAME
+DB_ORACLE_PASS_CONF_PARAM_NAME = u'%s.password' % DB_ORACLE_SECTION_NAME
+DB_ORACLE_HOST_CONF_PARAM_NAME = u'%s.host' % DB_ORACLE_SECTION_NAME
+DB_ORACLE_PORT_CONF_PARAM_NAME = u'%s.port' % DB_ORACLE_SECTION_NAME
+DB_ORACLE_DB_NAME_CONF_PARAM_NAME = u'%s.dbName' % DB_ORACLE_SECTION_NAME
+
+DB_REDIS_SECTION_NAME = u'%s_REDIS' % DB_CONF_SECTION_NAME
+DB_REDIS_HOST_CONF_PARAM_NAME = u'%s.host' % DB_REDIS_SECTION_NAME
+DB_REDIS_PORT_CONF_PARAM_NAME = u'%s.port' % DB_REDIS_SECTION_NAME
+DB_REDIS_PASS_CONF_PARAM_NAME = u'%s.password' % DB_REDIS_SECTION_NAME
+# DB_REDIS_DB_NAME_CONF_PARAM_NAME = u'%s.dbName' % DB_REDIS_SECTION_NAME
+
+EXPERIMENT_CONF_SECTION_NAME = u'Experiment'
+EXPERIMENT_DICOMS_INPUT_PATH_CONF_PARAM_NAME = u'%s.dicomsPath' % EXPERIMENT_CONF_SECTION_NAME
